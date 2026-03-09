@@ -57,7 +57,7 @@ export default function Navbar({ company }) {
               />
             )}
             <span className="font-outfit font-bold text-lg text-slate-800 hidden sm:block">
-              {company?.name?.split(" ").slice(0, 2).join(" ")}
+              PT. Anugerah Guna Perkasa
             </span>
           </a>
 

@@ -1,74 +1,203 @@
 from fastapi import FastAPI, APIRouter
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+from pydantic import BaseModel
+from typing import List, Optional
+from datetime import datetime, timezone
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
-import uuid
-from datetime import datetime, timezone
-
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# Create FastAPI app
+app = FastAPI(title="PT. Anugerah Guna Perkasa API")
 
-# Create the main app without a prefix
-app = FastAPI()
-
-# Create a router with the /api prefix
+# Create router with /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Pydantic Schemas
+class CompanyResponse(BaseModel):
+    id: int
+    name: str
+    tagline: Optional[str] = None
+    description: Optional[str] = None
+    founded_year: Optional[int] = None
+    address: Optional[str] = None
+    whatsapp: Optional[str] = None
+    map_coordinates: Optional[str] = None
+    logo_url: Optional[str] = None
 
-# Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+class ProductResponse(BaseModel):
+    id: int
+    name: str
+    description: Optional[str] = None
+    category: Optional[str] = None
+    image_url: Optional[str] = None
+    sizes: Optional[str] = None
+    is_active: bool = True
+    sort_order: int = 0
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+class AdvantageResponse(BaseModel):
+    id: int
+    title: str
+    description: Optional[str] = None
+    icon: Optional[str] = None
+    sort_order: int = 0
 
-# Add your routes to the router instead of directly to app
+# Static data
+company_data = CompanyResponse(
+    id=1,
+    name="PT. Anugerah Guna Perkasa",
+    tagline="Produsen produk kebersihan sejak 2016",
+    description="PT. Anugerah Guna Perkasa adalah produsen produk kebersihan sejak 2016 yang melayani kebutuhan laundry, hotel, rumah sakit, dan rumah tangga dengan kualitas terjamin dan legalitas resmi. Seluruh proses produksi dilakukan di kawasan industri dengan izin produksi dan izin edar resmi dari Dinas Kesehatan. Merek kami juga telah terdaftar dan memiliki perlindungan HAKI sebagai bentuk komitmen terhadap profesionalisme dan kepatuhan hukum.",
+    founded_year=2016,
+    address="Kutawaringin Industrial Park no.113 Kelurahan Jelegong, Kecamatan Kutawaringin, Kabupaten Bandung, Jawa Barat 40911",
+    whatsapp="6281234567890",
+    map_coordinates="-6.9175,107.5019",
+    logo_url="https://anugerahgunaperkasa.odoo.com/web/image/website/1/logo/AnugerahGunaPerkasa?unique=c3a5160"
+)
+
+products_data = [
+    ProductResponse(
+        id=1,
+        name="Hand Wash",
+        description="Sabun cuci tangan dengan berbagai pilihan aroma, efektif membersihkan dan menjaga kesegaran tangan.",
+        category="Personal Care",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/895-7f29bc79/Hand_Wash-removebg-preview.webp",
+        sizes="5 Ltr, 20 Ltr",
+        sort_order=1
+    ),
+    ProductResponse(
+        id=2,
+        name="Dish Soap",
+        description="Sabun cuci piring yang efektif mengangkat lemak dan sisa makanan, menghasilkan peralatan makan bersih dan higienis.",
+        category="Household",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/892-b6ac34d7/Dish_Soap-removebg-preview.webp",
+        sizes="5 Ltr, 20 Ltr",
+        sort_order=2
+    ),
+    ProductResponse(
+        id=3,
+        name="Blue Liquid Detergent",
+        description="Deterjen cair konsentrat dengan formula low foam yang efektif mengangkat noda membandel dan menjadikan hasil cucian menjadi bersih dan cerah.",
+        category="Laundry",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/935-3f361f0c/Blue_Liquid_Detergent-removebg-preview.webp",
+        sizes="5 Ltr, 20 Ltr",
+        sort_order=3
+    ),
+    ProductResponse(
+        id=4,
+        name="Green Liquid Detergent",
+        description="Deterjen cair low foam yang efektif membersihkan noda dengan hasil bersih dan cerah.",
+        category="Laundry",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/891-13e8b5ec/Green_Liquid_Detergent-removebg-preview.webp",
+        sizes="5 Ltr, 20 Ltr",
+        sort_order=4
+    ),
+    ProductResponse(
+        id=5,
+        name="Perfume",
+        description="Parfum laundry konsentrat tinggi dengan beragam varian aroma yang memberikan keharuman tahan lama. Digunakan setelah proses setrika untuk hasil akhir yang lebih segar dan profesional.",
+        category="Laundry",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/890-91966dac/Perfume-removebg-preview.webp",
+        sizes="5 Ltr, 20 Ltr",
+        sort_order=5
+    ),
+    ProductResponse(
+        id=6,
+        name="Softener",
+        description="Pelembut pakaian yang memberikan kelembutan maksimal dan keharuman segar tahan lama.",
+        category="Laundry",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/893-cf4adbd5/Softener-removebg-preview.webp",
+        sizes="5 Ltr, 20 Ltr",
+        sort_order=6
+    ),
+    ProductResponse(
+        id=7,
+        name="Powder Detergent",
+        description="Deterjen bubuk low foam dengan daya bersih optimal untuk mengangkat noda secara efektif tanpa merusak serat kain.",
+        category="Laundry",
+        image_url="https://anugerahgunaperkasa.odoo.com/web/image/961-9f820b5e/Powder%20Detergent.webp",
+        sizes="25 Kg",
+        sort_order=7
+    )
+]
+
+advantages_data = [
+    AdvantageResponse(
+        id=1,
+        title="Berpengalaman Sejak 2016",
+        description="Konsisten menghadirkan solusi kebersihan berkualitas selama lebih dari satu dekade.",
+        icon="Calendar",
+        sort_order=1
+    ),
+    AdvantageResponse(
+        id=2,
+        title="Produksi Terstandarisasi",
+        description="Diproduksi di kawasan industri dengan sistem kerja higienis dan terkontrol.",
+        icon="Factory",
+        sort_order=2
+    ),
+    AdvantageResponse(
+        id=3,
+        title="Legalitas Lengkap & Resmi",
+        description="Memiliki izin produksi dan izin edar Dinas Kesehatan.",
+        icon="Certificate",
+        sort_order=3
+    ),
+    AdvantageResponse(
+        id=4,
+        title="Merek Terlindungi HAKI",
+        description="Terdaftar resmi dan memiliki perlindungan Hak Kekayaan Intelektual.",
+        icon="ShieldCheck",
+        sort_order=4
+    ),
+    AdvantageResponse(
+        id=5,
+        title="Kualitas Andal & Efisien",
+        description="Performa optimal, aman digunakan, dan ekonomis.",
+        icon="Sparkle",
+        sort_order=5
+    ),
+    AdvantageResponse(
+        id=6,
+        title="Mitra Terpercaya Berbagai Sektor",
+        description="Dipercaya oleh laundry, hotel, rumah sakit, dan rumah tangga.",
+        icon="Handshake",
+        sort_order=6
+    )
+]
+
+# API Routes
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "PT. Anugerah Guna Perkasa API", "status": "online"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
+@api_router.get("/company", response_model=CompanyResponse)
+async def get_company():
+    return company_data
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
-    return status_checks
+@api_router.get("/products", response_model=List[ProductResponse])
+async def get_products():
+    return products_data
 
-# Include the router in the main app
+@api_router.get("/products/{product_id}", response_model=ProductResponse)
+async def get_product(product_id: int):
+    for product in products_data:
+        if product.id == product_id:
+            return product
+    return {"error": "Product not found"}
+
+@api_router.get("/advantages", response_model=List[AdvantageResponse])
+async def get_advantages():
+    return advantages_data
+
+# Include router
 app.include_router(api_router)
 
+# CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
@@ -84,6 +213,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+@app.on_event("startup")
+async def startup_event():
+    logger.info("PT. Anugerah Guna Perkasa API started successfully")
+    logger.info("Note: Using static data (MariaDB not available in this environment)")

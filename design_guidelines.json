@@ -1,0 +1,160 @@
+{
+  "design_system": {
+    "typography": {
+      "font_family": {
+        "heading": "Outfit, sans-serif",
+        "body": "Inter, sans-serif",
+        "accent": "Manrope, sans-serif"
+      },
+      "scale": {
+        "h1": "text-5xl md:text-7xl font-bold tracking-tight",
+        "h2": "text-4xl md:text-5xl font-semibold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-semibold",
+        "body": "text-base md:text-lg leading-relaxed text-slate-600",
+        "caption": "text-sm text-slate-500 uppercase tracking-widest"
+      }
+    },
+    "colors": {
+      "theme": "light",
+      "palette": {
+        "primary": {
+          "DEFAULT": "#0284c7",
+          "foreground": "#ffffff",
+          "50": "#f0f9ff",
+          "100": "#e0f2fe",
+          "500": "#0ea5e9",
+          "600": "#0284c7",
+          "900": "#0c4a6e"
+        },
+        "secondary": {
+          "DEFAULT": "#10b981",
+          "foreground": "#ffffff",
+          "50": "#ecfdf5",
+          "500": "#10b981",
+          "900": "#064e3b"
+        },
+        "accent": {
+          "DEFAULT": "#f43f5e",
+          "foreground": "#ffffff"
+        },
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "surface_highlight": "#f1f5f9"
+      }
+    },
+    "layout": {
+      "spacing": "relaxed",
+      "container": "max-w-7xl mx-auto px-6 md:px-12",
+      "section_spacing": "py-24 md:py-32",
+      "grid_gap": "gap-8 md:gap-12",
+      "border_radius": "rounded-2xl"
+    },
+    "motion": {
+      "default_transition": "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+      "hover_lift": "hover:-translate-y-2 hover:shadow-xl",
+      "entrance": "opacity-0 translate-y-8"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-primary/20 rounded-full px-8 py-4 font-semibold transition-all hover:scale-105",
+      "secondary": "bg-white text-primary border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 rounded-full px-8 py-4 font-semibold transition-all"
+    },
+    "cards": {
+      "product": "bg-white rounded-3xl p-8 border border-slate-100 hover:border-primary/20 shadow-sm hover:shadow-2xl transition-all duration-500 group relative overflow-hidden",
+      "feature": "bg-slate-50/50 hover:bg-white p-8 rounded-2xl transition-all hover:shadow-lg border border-transparent hover:border-slate-100"
+    },
+    "navigation": {
+      "wrapper": "fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100",
+      "link": "text-slate-600 hover:text-primary font-medium transition-colors"
+    }
+  },
+  "content_strategy": {
+    "voice": "Professional, Trustworthy, Clean, Efficient",
+    "language": "Bahasa Indonesia",
+    "key_messages": [
+      "Kebersihan adalah Prioritas",
+      "Solusi Laundry & Rumah Tangga",
+      "Kualitas Terjamin Sejak 2016"
+    ]
+  },
+  "pages": {
+    "home": {
+      "sections": [
+        "Hero Section",
+        "About Us (Keunggulan)",
+        "Product Showcase (The 'Clean' Grid)",
+        "Location & Contact",
+        "Footer"
+      ]
+    }
+  },
+  "image_assets": {
+    "products": [
+      {
+        "name": "Hand Wash",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/895-7f29bc79/Hand_Wash-removebg-preview.webp",
+        "description": "Sabun cuci tangan dengan berbagai pilihan aroma, efektif membersihkan.",
+        "category": "personal_care"
+      },
+      {
+        "name": "Dish Soap",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/892-b6ac34d7/Dish_Soap-removebg-preview.webp",
+        "description": "Sabun cuci piring efektif mengangkat lemak.",
+        "category": "household"
+      },
+      {
+        "name": "Blue Liquid Detergent",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/935-3f361f0c/Blue_Liquid_Detergent-removebg-preview.webp",
+        "description": "Deterjen cair konsentrat low foam untuk noda membandel.",
+        "category": "laundry"
+      },
+      {
+        "name": "Green Liquid Detergent",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/891-13e8b5ec/Green_Liquid_Detergent-removebg-preview.webp",
+        "description": "Deterjen cair low foam efektif membersihkan.",
+        "category": "laundry"
+      },
+      {
+        "name": "Perfume",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/890-91966dac/Perfume-removebg-preview.webp",
+        "description": "Parfum laundry konsentrat tinggi, wangi tahan lama.",
+        "category": "laundry"
+      },
+      {
+        "name": "Softener",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/893-cf4adbd5/Softener-removebg-preview.webp",
+        "description": "Pelembut pakaian, lembut maksimal.",
+        "category": "laundry"
+      },
+      {
+        "name": "Powder Detergent",
+        "url": "https://anugerahgunaperkasa.odoo.com/web/image/961-9f820b5e/Powder%20Detergent.webp",
+        "description": "Deterjen bubuk low foam daya bersih optimal.",
+        "category": "laundry"
+      }
+    ],
+    "company_logo": "https://anugerahgunaperkasa.odoo.com/web/image/website/1/logo/AnugerahGunaPerkasa?unique=c3a5160",
+    "placeholders": {
+      "hero_bg": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80",
+      "factory_bg": "https://images.unsplash.com/photo-1628133287893-4e4f9b8c0c4e?auto=format&fit=crop&q=80"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Use 'framer-motion' for all entrance animations. Products should float in.",
+    "The Hero section must use a clean, high-key photography style. Use the product images with a subtle drop shadow to make them pop against a white/light blue background.",
+    "Implement the 'WhatsApp' button as a floating action button (FAB) in the bottom right, pulsating gently.",
+    "For the Map, use an iframe with the coordinates: Kutawaringin Industrial Park.",
+    "Do NOT use a contact form. Only WhatsApp.",
+    "Ensure the layout is responsive. Products usually stack on mobile.",
+    "Use the exact product descriptions provided in the JSON.",
+    "The 'Advantages' section should use Phosphor Icons (e.g., ShieldCheck, Leaf, Flask, Truck).",
+    "Backgrounds: Avoid plain white everywhere. Use subtle gradients like bg-gradient-to-b from-slate-50 to-white."
+  ],
+  "universal_guidelines": [
+    "No generic AI gradients.",
+    "Use 24px-32px border radius for cards (Modern Organic feel).",
+    "Typography must be legible and crisp.",
+    "Interactive elements must have clear hover states."
+  ]
+}

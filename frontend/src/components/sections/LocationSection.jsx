@@ -7,12 +7,12 @@ export default function LocationSection({ company }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Google Maps embed URL for Kutawaringin Industrial Park
-  const mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0449147424686!2d107.4994!3d-6.9175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e12b1bae3c99%3A0x0!2sKutawaringin%20Industrial%20Park!5e0!3m2!1sen!2sid!4v1234567890";
+  // Google Maps embed URL from https://maps.app.goo.gl/CuAPykm2C5bEA5y88
+  const mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0449147424686!2d107.50176!3d-6.9383889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e1fc16be72e7%3A0xbe7e4b5f2d8c8c8d!2sPT.%20Anugerah%20Guna%20Perkasa!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid";
 
   const openGoogleMaps = () => {
     window.open(
-      `https://www.google.com/maps/search/?api=1&query=Kutawaringin+Industrial+Park+no.113+Jelegong+Kutawaringin+Bandung`,
+      "https://maps.app.goo.gl/CuAPykm2C5bEA5y88",
       "_blank"
     );
   };

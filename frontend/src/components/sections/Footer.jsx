@@ -1,4 +1,4 @@
-import { MapPin, Phone, EnvelopeSimple, InstagramLogo, FacebookLogo } from "@phosphor-icons/react";
+import { MapPin, Phone, EnvelopeSimple, InstagramLogo } from "@phosphor-icons/react";
 
 const navLinks = [
   { href: "#beranda", label: "Beranda" },
@@ -30,11 +30,11 @@ export default function Footer({ company }) {
                 <img
                   src={company.logo_url}
                   alt={company.name}
-                  className="h-10 w-auto brightness-0 invert"
+                  className="h-10 w-auto"
                 />
               )}
               <span className="font-outfit font-bold text-xl text-white">
-                {company?.name?.split(" ").slice(0, 2).join(" ")}
+                PT Anugerah Guna Perkasa
               </span>
             </div>
             <p className="text-slate-400 leading-relaxed mb-6 max-w-md">
@@ -43,18 +43,13 @@ export default function Footer({ company }) {
             {/* Social Links */}
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/pt.anugerah_guna_perkasa"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-800 hover:bg-sky-600 rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <InstagramLogo size={20} />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-slate-800 hover:bg-sky-600 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Facebook"
-              >
-                <FacebookLogo size={20} />
               </a>
             </div>
           </div>
@@ -105,10 +100,10 @@ export default function Footer({ company }) {
               <li className="flex items-center gap-3">
                 <EnvelopeSimple size={20} className="text-amber-400" />
                 <a
-                  href="mailto:info@anugerahgunaperkasa.com"
+                  href="mailto:sales@anugerahgunaperkasa.com"
                   className="text-slate-400 hover:text-white transition-colors text-sm"
                 >
-                  info@anugerahgunaperkasa.com
+                  sales@anugerahgunaperkasa.com
                 </a>
               </li>
             </ul>

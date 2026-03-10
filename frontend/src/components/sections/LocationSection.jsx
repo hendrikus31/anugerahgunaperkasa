@@ -108,7 +108,7 @@ export default function LocationSection({ company }) {
                 <br />
                 Senin - Jumat: 08.00 - 17.00 WIB
                 <br />
-                Sabtu: 08.00 - 12.00 WIB
+                Sabtu - Minggu: Libur
               </p>
             </div>
           </motion.div>

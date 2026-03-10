@@ -123,7 +123,7 @@ export default function ProductsSection({ products }) {
                 <h3 className="font-outfit text-xl font-semibold text-slate-800 mb-2 group-hover:text-sky-600 transition-colors">
                   {product.name}
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4">
                   {product.description}
                 </p>
                 

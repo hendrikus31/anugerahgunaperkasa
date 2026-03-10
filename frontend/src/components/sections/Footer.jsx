@@ -89,12 +89,12 @@ export default function Footer({ company }) {
               <li className="flex items-center gap-3">
                 <Phone size={20} className="text-emerald-400" />
                 <a
-                  href={`https://wa.me/${company?.whatsapp || "6281122445593"}`}
+                  href={`https://wa.me/${company?.whatsapp || "62811224493"}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-400 hover:text-white transition-colors text-sm"
                 >
-                  +{company?.whatsapp || "62 811 2244 5593"}
+                  +{company?.whatsapp || "62 811 224 493"}
                 </a>
               </li>
               <li className="flex items-center gap-3">

@@ -54,7 +54,7 @@ company_data = CompanyResponse(
     description="PT. Anugerah Guna Perkasa adalah produsen produk kebersihan sejak 2016 yang melayani kebutuhan laundry, hotel, rumah sakit, dan rumah tangga dengan kualitas terjamin dan legalitas resmi. Seluruh proses produksi dilakukan di kawasan industri dengan izin produksi dan izin edar resmi dari Dinas Kesehatan. Merek kami juga telah terdaftar dan memiliki perlindungan HAKI sebagai bentuk komitmen terhadap profesionalisme dan kepatuhan hukum.",
     founded_year=2016,
     address="Kutawaringin Industrial Park no.113 Kelurahan Jelegong, Kecamatan Kutawaringin, Kabupaten Bandung, Jawa Barat 40911",
-    whatsapp="6281122445593",
+    whatsapp="62811224493",
     map_coordinates="-6.9175,107.5019",
     logo_url="https://anugerahgunaperkasa.odoo.com/web/image/website/1/logo/AnugerahGunaPerkasa?unique=c3a5160"
 )
